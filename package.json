@@ -2,8 +2,8 @@
   "name": "wslp",
   "displayName": "WSLP — WSL Picker",
   "description": "Choose which WSL distribution to work in when VS Code starts, and shut down the one you switched away from.",
-  "version": "0.1.2",
-  "publisher": "wslp",
+  "version": "0.1.3",
+  "publisher": "CameronWhite",
   "repository": "camwhi-te/wslp",
   "license": "MIT",
   "engines": {
