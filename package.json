@@ -1,0 +1,93 @@
+{
+  "name": "wslp",
+  "displayName": "WSLP — WSL Picker",
+  "description": "Choose which WSL distribution to work in when VS Code starts, and shut down the one you switched away from.",
+  "version": "0.1.0",
+  "publisher": "wslp",
+  "repository": "camwhi-te/wslp",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "wsl",
+    "remote",
+    "distro",
+    "startup"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "wslp.switchDistro",
+        "title": "Switch WSL Distribution…",
+        "category": "WSLP"
+      },
+      {
+        "command": "wslp.shutdownDistro",
+        "title": "Shut Down WSL Distribution…",
+        "category": "WSLP"
+      },
+      {
+        "command": "wslp.disableWindowRestore",
+        "title": "Start With Picker Instead of Reopening Last Window",
+        "category": "WSLP"
+      }
+    ],
+    "configuration": {
+      "title": "WSLP",
+      "properties": {
+        "wslp.promptOnLaunch": {
+          "type": "boolean",
+          "default": true,
+          "description": "When VS Code starts and restores a WSL window, ask which WSL distribution to work in."
+        },
+        "wslp.promptInEmptyWindow": {
+          "type": "boolean",
+          "default": true,
+          "description": "When VS Code starts with an empty local window, ask which WSL distribution to open."
+        },
+        "wslp.shutdownPrevious": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "always",
+            "never"
+          ],
+          "enumDescriptions": [
+            "Ask whether to shut down the distribution you switched away from.",
+            "Shut it down automatically, as long as no other VS Code window is connected to it.",
+            "Leave it running."
+          ],
+          "default": "ask",
+          "description": "What to do with the WSL distribution you switched away from."
+        },
+        "wslp.excludeDistros": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "docker-desktop",
+            "docker-desktop-data",
+            "rancher-desktop",
+            "rancher-desktop-data"
+          ],
+          "description": "WSL distributions to leave out of the picker."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\""
+  }
+}
